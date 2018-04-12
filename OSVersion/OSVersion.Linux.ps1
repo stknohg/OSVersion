@@ -45,10 +45,16 @@ function GetLinuxVersion () {
             continue
         }
         'opensuse' { 
-            # OpenSUSE
+            # openSUSE
             $osDistro = [OSVersion.Distributions]::OpenSUSE
             $majorVer, $minorVer = $linuxInfo.VERSION_ID.Trim('"') -split '\.'
             $buildVer = 0
+            if ($majorVer -eq 42) {
+                # openSUSE 42 is regarded as version 14
+                $buildVer = $minorVer
+                $minorVer = $majorVer
+                $majorVer = 14
+            }
             $caption = $linuxInfo.PRETTY_NAME.Trim('"')
             continue
         }

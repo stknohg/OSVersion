@@ -59,7 +59,7 @@ The list of `Distribution` and `Version` properties values.
 |Fedora 25|Fedora|25|0|0||
 |Fedora 26|Fedora|26|0|0||
 |Kali Linux 2018.1|Kali|2018|1|0||
-|OpenSUSE 42|OpenSUSE|42|1 - 2|0||
+|openSUSE Leap 42|OpenSUSE|14|42|1 - 3||
 |Red Hat Enterprise Linux 7|RHEL|7|1 - |0||
 |SUSE Linux Enterprise Server 12|SLES|12|0 - 3|0||
 |Ubuntu 14|Ubuntu|14|4,10|0||
