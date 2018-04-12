@@ -52,7 +52,7 @@ function GetLinuxVersion () {
             $caption = $linuxInfo.PRETTY_NAME.Trim('"')
             continue
         }
-        'rhel' {
+        '"rhel"' {
             # RHEL
             $osDistro = [OSVersion.Distributions]::RHEL
             $majorVer, $minorVer = $LinuxInfo.VERSION_ID -split '\.'
@@ -60,7 +60,7 @@ function GetLinuxVersion () {
             $caption = $linuxInfo.PRETTY_NAME.Trim('"')
             continue
         }
-        'sles' { 
+        '"sles"' { 
             # SLES
             $osDistro = [OSVersion.Distributions]::SLES
             $majorVer, $minorVer = $linuxInfo.VERSION_ID.Trim('"') -split '\.'
