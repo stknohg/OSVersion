@@ -12,7 +12,7 @@ function GetLinuxVersion () {
     $majorVer, $minorVer, $buildVer = 0, 0, 0
     $caption = ''
     switch ($linuxInfo.ID) {
-        'centos' {
+        '"centos"' {
             # CentOS
             $osDistro = [OSVersion.Distributions]::CentOS
             $majorVer, $minorVer, $buildVer = ( -split (Get-Content /etc/redhat-release))[3] -split '\.'
