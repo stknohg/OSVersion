@@ -62,8 +62,8 @@ The list of `Distribution` and `Version` properties values.
 |openSUSE Leap 42|OpenSUSE|14|42|1 - 3||
 |Red Hat Enterprise Linux 7|RHEL|7|1 - |0||
 |SUSE Linux Enterprise Server 12|SLES|12|0 - 3|0||
-|Ubuntu 14|Ubuntu|14|4,10|0||
+|Ubuntu 14|Ubuntu|14|4,10|0 - 5|Assign LTS point release to build version.|
 |Ubuntu 15|Ubuntu|15|4,10|0|PowerShell Core does not support this version.|
-|Ubuntu 16|Ubuntu|16|4,10|0||
+|Ubuntu 16|Ubuntu|16|4,10|0 - 3|Assign LTS point release to build version.|
 |Ubuntu 17|Ubuntu|17|4,10|0||
 |Others|Unknown|0|0|0||
