@@ -1,5 +1,5 @@
-#requires -Version 2.0
-Set-Strictmode -Version 3.0
+#requires -Version 3.0
+Set-Strictmode -Version 2.0
 Add-Type -Path (Join-Path $PSScriptRoot "OSVersionInfo.cs")
 . (Join-Path $PSScriptRoot "OSVersion.Windows.ps1")
 . (Join-Path $PSScriptRoot "OSVersion.MacOS.ps1")
