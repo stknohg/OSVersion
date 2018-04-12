@@ -24,11 +24,6 @@ function GetLinuxVersion () {
             $osDistro = [OSVersion.Distributions]::Debian
             $majorVer, $minorVer = (Get-Content /etc/debian_version) -split '\.'
             $buildVer = 0
-            # if the VERSION contains LTS point release, we set the point to build version.
-            $v2 = ( -split $linuxInfo.VERSION.Trim('"'))[0] -split '\.'
-            if ($v2.Length -eq 3) {
-                $buildVer = $v2[2]
-            }
             $caption = $linuxInfo.PRETTY_NAME.Trim('"')
             continue
         }
@@ -83,6 +78,11 @@ function GetLinuxVersion () {
             $osDistro = [OSVersion.Distributions]::Ubuntu
             $majorVer, $minorVer = $linuxInfo.VERSION_ID.Trim('"') -split '\.'
             $buildVer = 0
+            # if the VERSION contains LTS point release, we set the point to build version.
+            $v2 = ( -split $linuxInfo.VERSION.Trim('"'))[0] -split '\.'
+            if ($v2.Length -eq 3) {
+                $buildVer = $v2[2]
+            }
             $caption = $linuxInfo.PRETTY_NAME.Trim('"')
             continue
         }
