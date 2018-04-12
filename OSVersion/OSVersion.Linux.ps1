@@ -16,7 +16,7 @@ function GetLinuxVersion () {
             # CentOS
             $osDistro = [OSVersion.Distributions]::CentOS
             $majorVer, $minorVer, $buildVer = ( -split (Get-Content /etc/redhat-release))[3] -split '\.'
-            $caption = $linuxInfo.PRETTY_NAME
+            $caption = $linuxInfo.PRETTY_NAME.Trim('"')
             continue
         }
         'debian' {
@@ -24,7 +24,7 @@ function GetLinuxVersion () {
             $osDistro = [OSVersion.Distributions]::Debian
             $majorVer, $minorVer = (Get-Content /etc/debian_version) -split '\.'
             $buildVer = 0
-            $caption = $linuxInfo.PRETTY_NAME
+            $caption = $linuxInfo.PRETTY_NAME.Trim('"')
             continue
         }
         'fedora' {
@@ -33,7 +33,7 @@ function GetLinuxVersion () {
             $majorVer = $LinuxInfo.VERSION_ID
             $minorVer = 0
             $buildVer = 0
-            $caption = $linuxInfo.PRETTY_NAME
+            $caption = $linuxInfo.PRETTY_NAME.Trim('"')
             continue
         }
         'kali' { 
@@ -41,7 +41,7 @@ function GetLinuxVersion () {
             $osDistro = [OSVersion.Distributions]::Kali
             $majorVer, $minorVer = $linuxInfo.VERSION_ID.Trim('"') -split '\.'
             $buildVer = 0
-            $caption = $linuxInfo.PRETTY_NAME
+            $caption = $linuxInfo.PRETTY_NAME.Trim('"')
             continue
         }
         'opensuse' { 
@@ -49,7 +49,7 @@ function GetLinuxVersion () {
             $osDistro = [OSVersion.Distributions]::OpenSUSE
             $majorVer, $minorVer = $linuxInfo.VERSION_ID.Trim('"') -split '\.'
             $buildVer = 0
-            $caption = $linuxInfo.PRETTY_NAME
+            $caption = $linuxInfo.PRETTY_NAME.Trim('"')
             continue
         }
         'rhel' {
@@ -57,14 +57,14 @@ function GetLinuxVersion () {
             $osDistro = [OSVersion.Distributions]::RHEL
             $majorVer, $minorVer = $LinuxInfo.VERSION_ID -split '\.'
             $buildVer = 0
-            $caption = $linuxInfo.PRETTY_NAME
+            $caption = $linuxInfo.PRETTY_NAME.Trim('"')
             continue
         }
         'sles' { 
             # SLES
             $osDistro = [OSVersion.Distributions]::SLES
             $majorVer, $minorVer = $linuxInfo.VERSION_ID.Trim('"') -split '\.'
-            $caption = $linuxInfo.PRETTY_NAME
+            $caption = $linuxInfo.PRETTY_NAME.Trim('"')
             continue
         }
         'ubuntu' { 
@@ -72,13 +72,13 @@ function GetLinuxVersion () {
             $osDistro = [OSVersion.Distributions]::Ubuntu
             $majorVer, $minorVer = $linuxInfo.VERSION_ID.Trim('"') -split '\.'
             $buildVer = 0
-            $caption = $linuxInfo.PRETTY_NAME
+            $caption = $linuxInfo.PRETTY_NAME.Trim('"')
             continue
         }
         Default {
             $osDistro = [OSVersion.Distributions]::Unknown
             $majorVer, $minorVer, $buildVer = 0, 0, 0
-            $caption = $linuxInfo.PRETTY_NAME
+            $caption = $linuxInfo.PRETTY_NAME.Trim('"')
             continue
         }
     }
