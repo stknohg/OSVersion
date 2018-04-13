@@ -3,7 +3,8 @@
 #>
 function GetLinuxVersion () {
     if (-not (Test-Path -LiteralPath '/etc/os-release' -PathType Leaf)) {
-        throw '/etc/os-release was not found.'
+        Write-Warning '/etc/os-release was not found. We can not detect Linux version.'
+        return WriteUnknownVersion
     }
     
     # get os basic information.

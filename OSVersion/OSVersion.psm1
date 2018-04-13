@@ -12,7 +12,7 @@ function Get-OSVersion () {
     [OutputType([OSVersion.OSVersionInfo])]
     [CmdletBinding()]
     param ()
-    
+
     # Windows PowerShell
     if ($PSVersionTable.PSVersion.Major -lt 6) {
         return GetWindowsVersion
@@ -28,5 +28,11 @@ function Get-OSVersion () {
     if ($IsLinux) {
         return GetLinuxVersion
     }
-    throw 'Unknown platform.'
+
+    Write-Warning 'Current console is unknown platform.'
+    return WriteUnknownVersion
+}
+
+function WriteUnknownVersion () {
+    return New-Object 'OSVersion.OSVersionInfo' ([OSVersion.Distributions]::Unknown, (New-Object 'System.Version' (0, 0, 0)), '')
 }
