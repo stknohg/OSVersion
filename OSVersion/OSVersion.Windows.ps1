@@ -23,15 +23,15 @@ function GetWindowsVersion () {
                 $osDistro = [OSVersion.Distributions]::Windows
                 $majorVer = 10
                 $minorVer = switch ($cimInfo.Version.Build) {
-                    {$_ -gt 16299} { 1803; continue; } # Spring Creators Update (preview)
-                    16299 { 1709; continue; }          # Fall Creators Update
-                    15063 { 1703; continue; }          # Creators Update
-                    14393 { 1607; continue; }          # Anniversary Update
-                    10586 { 1511; continue; }          # November Update
-                    Default { 1507; continue; }        # Initial release
+                    {$_ -gt 16299} { 1803; break } # Spring Creators Update (preview)
+                    16299 { 1709; break }          # Fall Creators Update
+                    15063 { 1703; break }          # Creators Update
+                    14393 { 1607; break }          # Anniversary Update
+                    10586 { 1511; break }          # November Update
+                    Default { 1507; break }        # Initial release
                 }
                 $buildVer = 0
-                continue
+                break
             }
             # Windows Server 2016 / Windows Server SAC
             switch ($cimInfo.Version.Build) {
@@ -39,28 +39,28 @@ function GetWindowsVersion () {
                     # Windows Server 2019 (preview)
                     $osDistro = [OSVersion.Distributions]::WindowsServer
                     $majorVer, $minorVer, $buildVer = 2019, 1, 0
-                    continue
+                    break
                 }
                 {$_ -ge 17035} {
                     # Windows Server 1803 (preview)
                     $osDistro = [OSVersion.Distributions]::WindowsServerSAC
                     $majorVer, $minorVer, $buildVer = 1803, 1, 0
-                    continue
+                    break
                 }
                 16299 {
                     # Windows Server 1709
                     $osDistro = [OSVersion.Distributions]::WindowsServerSAC
                     $majorVer, $minorVer, $buildVer = 1709, 1, 0
-                    continue
+                    break
                 }
                 Default {
                     # Windows Server 2016 (Build 14393)
                     $osDistro = [OSVersion.Distributions]::WindowsServer
                     $majorVer, $minorVer, $buildVer = 2016, 1, 0
-                    continue
+                    break
                 }
             }
-            continue
+            break
         }
         6 {
             switch ($cimInfo.Version.Minor) {
@@ -69,24 +69,24 @@ function GetWindowsVersion () {
                     if ($cimInfo.ProductType -eq $ProductType_WorkStation) {
                         $osDistro = [OSVersion.Distributions]::Windows
                         $majorVer, $minorVer, $buildVer = 8, 1, 0
-                        continue
+                        break
                     }
                     # Windows Server 2012 R2
                     $osDistro = [OSVersion.Distributions]::WindowsServer
                     $majorVer, $minorVer, $buildVer = 2012, 2, 0
-                    continue
+                    break
                 }
                 2 {
                     # Windows 8
                     if ($cimInfo.ProductType -eq $ProductType_WorkStation) {
                         $osDistro = [OSVersion.Distributions]::Windows
                         $majorVer, $minorVer, $buildVer = 8, 0, 0
-                        continue
+                        break
                     }
                     # Windows Server 2012
                     $osDistro = [OSVersion.Distributions]::WindowsServer
                     $majorVer, $minorVer, $buildVer = 2012, 1, 0
-                    continue
+                    break
                 }
                 1 {
                     # Windows 7
@@ -95,22 +95,22 @@ function GetWindowsVersion () {
                         $majorVer = 7
                         $minorVer = 0
                         $buildVer = switch ($cimInfo.Version.Build) {
-                            7601 { 1; continue; }    # Windows 7 SP1
-                            7600 { 0; continue; }    # Windows 7
-                            Default { 0; continue; } # Windows 7 
+                            7601 { 1; break }    # Windows 7 SP1
+                            7600 { 0; break }    # Windows 7
+                            Default { 0; break } # Windows 7 
                         }
-                        continue
+                        break
                     }
                     # Windows Server 2008 R2
                     $osDistro = [OSVersion.Distributions]::WindowsServer
                     $majorVer = 2008
                     $minorVer = 2
                     $buildVer = switch ($cimInfo.Version.Build) {
-                        7601 { 1; continue; }    # Windows Server 2008 R2 SP1 
-                        7600 { 0; continue; }    # Windows Server 2008 R2
-                        Default { 0; continue; } # Windows Server 2008 R2
+                        7601 { 1; break }    # Windows Server 2008 R2 SP1 
+                        7600 { 0; break }    # Windows Server 2008 R2
+                        Default { 0; break } # Windows Server 2008 R2
                     }
-                    continue
+                    break
                 }
                 0 {
                     # Vista
@@ -119,22 +119,22 @@ function GetWindowsVersion () {
                         $majorVer = 6
                         $minorVer = 0
                         $buildVer = switch ($cimInfo.Version.Build) {
-                            6002 { 2; continue; }    # Vista SP2
-                            6001 { 1; continue; }    # Vista SP1 
-                            Default { 0; continue; } # Vista 
+                            6002 { 2; break }    # Vista SP2
+                            6001 { 1; break }    # Vista SP1 
+                            Default { 0; break } # Vista 
                         }
-                        continue
+                        break
                     }
                     # Windows Server 2008
                     $osDistro = [OSVersion.Distributions]::WindowsServer
                     $majorVer = 2008
                     $minorVer = 1
                     $buildVer = switch ($cimInfo.Version.Build) {
-                        6002 { 2; continue; }    # Windows Server 2008 SP2 
-                        6001 { 1; continue; }    # Windows Server 2008 SP1 
-                        Default { 0; continue; } # Windows Server 2008
+                        6002 { 2; break }    # Windows Server 2008 SP2 
+                        6001 { 1; break }    # Windows Server 2008 SP1 
+                        Default { 0; break } # Windows Server 2008
                     }
-                    continue
+                    break
                 }
             }
         }
@@ -146,7 +146,7 @@ function GetWindowsVersion () {
                 [OSVersion.Distributions]::WindowsServer
             }
             $osVersion = $cimInfo.Version
-            continue
+            break
         }
     }
     $osVersion = New-Object 'System.Version' -ArgumentList @($majorVer, $minorVer, $buildVer)

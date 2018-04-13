@@ -17,7 +17,7 @@ function GetLinuxVersion () {
             $osDistro = [OSVersion.Distributions]::CentOS
             $majorVer, $minorVer, $buildVer = ( -split (Get-Content /etc/redhat-release))[3] -split '\.'
             $caption = $linuxInfo.PRETTY_NAME.Trim('"')
-            continue
+            break
         }
         'debian' {
             # Debian
@@ -25,7 +25,7 @@ function GetLinuxVersion () {
             $majorVer, $minorVer = (Get-Content /etc/debian_version) -split '\.'
             $buildVer = 0
             $caption = $linuxInfo.PRETTY_NAME.Trim('"')
-            continue
+            break
         }
         'fedora' {
             # Fedora
@@ -34,7 +34,7 @@ function GetLinuxVersion () {
             $minorVer = 0
             $buildVer = 0
             $caption = $linuxInfo.PRETTY_NAME.Trim('"')
-            continue
+            break
         }
         'kali' { 
             # Kali
@@ -42,7 +42,7 @@ function GetLinuxVersion () {
             $majorVer, $minorVer = $linuxInfo.VERSION_ID.Trim('"') -split '\.'
             $buildVer = 0
             $caption = $linuxInfo.PRETTY_NAME.Trim('"')
-            continue
+            break
         }
         'opensuse' { 
             # openSUSE
@@ -56,7 +56,7 @@ function GetLinuxVersion () {
                 $majorVer = 14
             }
             $caption = $linuxInfo.PRETTY_NAME.Trim('"')
-            continue
+            break
         }
         '"rhel"' {
             # RHEL
@@ -64,14 +64,14 @@ function GetLinuxVersion () {
             $majorVer, $minorVer = $LinuxInfo.VERSION_ID -split '\.'
             $buildVer = 0
             $caption = $linuxInfo.PRETTY_NAME.Trim('"')
-            continue
+            break
         }
         '"sles"' { 
             # SLES
             $osDistro = [OSVersion.Distributions]::SLES
             $majorVer, $minorVer = $linuxInfo.VERSION_ID.Trim('"') -split '\.'
             $caption = $linuxInfo.PRETTY_NAME.Trim('"')
-            continue
+            break
         }
         'ubuntu' { 
             # Ubuntu
@@ -84,13 +84,13 @@ function GetLinuxVersion () {
                 $buildVer = $v2[2]
             }
             $caption = $linuxInfo.PRETTY_NAME.Trim('"')
-            continue
+            break
         }
         Default {
             $osDistro = [OSVersion.Distributions]::Unknown
             $majorVer, $minorVer, $buildVer = 0, 0, 0
             $caption = $linuxInfo.PRETTY_NAME.Trim('"')
-            continue
+            break
         }
     }
     $osVersion = New-Object 'System.Version' -ArgumentList @($majorVer, $minorVer, $buildVer)
