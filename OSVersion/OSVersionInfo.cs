@@ -27,6 +27,11 @@ namespace OSVersion
 
         public string Name { get; private set; }
 
+        public bool Is(Distributions distribution)
+        {
+            return this.Distribution == distribution;
+        }
+
         public bool IsWidowsFamily
         {
             get
