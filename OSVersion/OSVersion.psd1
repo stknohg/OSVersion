@@ -21,6 +21,9 @@
     # Minimum version of the PowerShell engine required by this module
     PowerShellVersion = '3.0'
 
+    # Format files (.ps1xml) to be loaded when importing this module
+    FormatsToProcess  = @('OSVersion.format.ps1xml')
+
     # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
     NestedModules     = @('OSVersion.psm1')
 
