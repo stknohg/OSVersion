@@ -3,7 +3,7 @@ $RootPath = Join-Path (Split-Path $PSScriptRoot -Parent) 'OSVersion'
 Add-Type -Path (Join-Path $RootPath "OSVersionInfo.cs")
 . (Join-Path $RootPath 'OSVersion.MacOS.ps1')
 
-Describe "GetWindowsVersion function unit tests" {
+Describe "GetMacVersion function unit tests" {
 
     # macOS High Sierra
     It "In the case of macOS High Sierra (10.13.1)" {
