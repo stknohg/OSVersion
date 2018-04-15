@@ -6,7 +6,11 @@ PowerShell module for getting OS version information.
 
 ## How to install
 
-We plan to install it from PowerShell gallery.
+You can install it from [PowerShell gallery](https://www.powershellgallery.com/packages/OSVersion).
+
+```powershell
+Install-Module OSVersion -Scope CurrentUser
+```
 
 ## Usage
 
