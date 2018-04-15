@@ -62,7 +62,7 @@ function GetLinuxVersion () {
         '"rhel"' {
             # RHEL
             $osDistro = [OSVersion.Distributions]::RHEL
-            $majorVer, $minorVer = $LinuxInfo.VERSION_ID -split '\.'
+            $majorVer, $minorVer = $LinuxInfo.VERSION_ID.Trim('"') -split '\.'
             $buildVer = 0
             $caption = $linuxInfo.PRETTY_NAME.Trim('"')
             break
@@ -97,4 +97,8 @@ function GetLinuxVersion () {
     $osVersion = New-Object 'System.Version' -ArgumentList @($majorVer, $minorVer, $buildVer)
 
     return New-Object 'OSVersion.OSVersionInfo' -ArgumentList @($osDistro, $osVersion, $caption)
+}
+
+function WriteUnknownVersion () {
+    return New-Object 'OSVersion.OSVersionInfo' ([OSVersion.Distributions]::Unknown, (New-Object 'System.Version' (0, 0, 0)), '')
 }
