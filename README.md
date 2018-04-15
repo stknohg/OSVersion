@@ -1,5 +1,7 @@
 # OSVersion
 
+[![Build status](https://ci.appveyor.com/api/projects/status/ap98gg1ir7hb7pbx?svg=true)](https://ci.appveyor.com/project/stknohg/osversion)
+
 PowerShell module for getting OS version information.
 
 ## How to install
