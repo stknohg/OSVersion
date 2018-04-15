@@ -2,15 +2,7 @@
     Get Windows OS version
 #>
 function GetWindowsVersion () {
-    $cimInfo = $null
-    try {
-        $cimInfo = Get-CimInstance -ClassName Win32_OperatingSystem -Property Version, ProductType, Caption `
-            | ForEach-Object { [PSCustomObject]@{ Version = [Version]$_.Version; ProductType = $_.ProductType; Caption = $_.Caption } }
-    } catch {
-        $cimInfo = Get-WmiObject -Class Win32_OperatingSystem -Property Version, ProductType, Caption `
-            | ForEach-Object { [PSCustomObject]@{ Version = [Version]$_.Version; ProductType = $_.ProductType; Caption = $_.Caption } }
-    }
-    # 
+    $cimInfo = GetCimVersionInfo
     $ProductType_WorkStation = 1; # see : https://msdn.microsoft.com/en-us/library/aa394239.aspx
 
     # see : http://www.atmarkit.co.jp/ait/articles/1707/31/news028.html
@@ -152,4 +144,14 @@ function GetWindowsVersion () {
     $osVersion = New-Object 'System.Version' -ArgumentList @($majorVer, $minorVer, $buildVer)
 
     return New-Object 'OSVersion.OSVersionInfo' -ArgumentList @($osDistro, $osVersion, $cimInfo.Caption)
+}
+
+function GetCimVersionInfo () {
+    try {
+        return Get-CimInstance -ClassName Win32_OperatingSystem -Property Version, ProductType, Caption `
+            | ForEach-Object { [PSCustomObject]@{ Version = [Version]$_.Version; ProductType = $_.ProductType; Caption = $_.Caption } }
+    } catch {
+        return Get-WmiObject -Class Win32_OperatingSystem -Property Version, ProductType, Caption `
+            | ForEach-Object { [PSCustomObject]@{ Version = [Version]$_.Version; ProductType = $_.ProductType; Caption = $_.Caption } }
+    }
 }
