@@ -1,5 +1,5 @@
 $RootPath = Join-Path (Split-Path $PSScriptRoot -Parent) 'OSVersion'
-# OSVersion.Windows.ps1 is internal. so we need to dot source .ps1 file directly.
+# OSVersion.MacOS.ps1 is internal. so we need to dot source .ps1 file directly.
 Add-Type -Path (Join-Path $RootPath "OSVersionInfo.cs")
 . (Join-Path $RootPath 'OSVersion.MacOS.ps1')
 
