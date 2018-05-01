@@ -6,10 +6,23 @@ Add-Type -Path (Join-Path $RootPath "OSVersionInfo.cs")
 Describe "GetWindowsVersion function unit tests" {
 
     # Windows 10
+    It "In the case of Windows 10 RS5(1809)" {
+        Mock -CommandName GetCimVersionInfo -MockWith {
+            return [PSCustomObject]@{
+                Version     = New-Object 'System.Version' (10, 0, 17500);
+                ProductType = 1;
+                Caption     = 'Windows 10 1809 Test Edition' 
+            }
+        }
+        $target = GetWindowsVersion
+        $target.Distribution | Should -Be 'Windows'
+        $target.Version.Major, $target.Version.Minor, $target.Version.Build | Should -Be (10, 1809, 0)
+        $target.Name | Should -Be 'Windows 10 1809 Test Edition' 
+    }
     It "In the case of Windows 10 Spring Creators Update" {
         Mock -CommandName GetCimVersionInfo -MockWith {
             return [PSCustomObject]@{
-                Version     = New-Object 'System.Version' (10, 0, 17000);
+                Version     = New-Object 'System.Version' (10, 0, 17134);
                 ProductType = 1;
                 Caption     = 'Windows 10 1803 Test Edition' 
             }

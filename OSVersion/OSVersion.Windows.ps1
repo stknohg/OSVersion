@@ -15,7 +15,8 @@ function GetWindowsVersion () {
                 $osDistro = [OSVersion.Distributions]::Windows
                 $majorVer = 10
                 $minorVer = switch ($cimInfo.Version.Build) {
-                    {$_ -gt 16299} { 1803; break } # Spring Creators Update (preview)
+                    {$_ -gt 17134} { 1809; break } # RS5 next Release 
+                    17134 { 1803; break }          # Spring Creators Update
                     16299 { 1709; break }          # Fall Creators Update
                     15063 { 1703; break }          # Creators Update
                     14393 { 1607; break }          # Anniversary Update
