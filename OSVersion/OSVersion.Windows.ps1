@@ -34,8 +34,8 @@ function GetWindowsVersion () {
                     $majorVer, $minorVer, $buildVer = 2019, 1, 0
                     break
                 }
-                {$_ -ge 17035} {
-                    # Windows Server 1803 (preview)
+                17134 {
+                    # Windows Server 1803
                     $osDistro = [OSVersion.Distributions]::WindowsServerSAC
                     $majorVer, $minorVer, $buildVer = 1803, 1, 0
                     break

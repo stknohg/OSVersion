@@ -112,18 +112,18 @@ Describe "GetWindowsVersion function unit tests" {
         $target.Version.Major, $target.Version.Minor, $target.Version.Build | Should -Be (2019, 1, 0)
         $target.Name | Should -Be 'Windows Server 2019 (Preview)' 
     }
-    It "In the case of Windows Server 1803 (preview)" {
+    It "In the case of Windows Server 1803" {
         Mock -CommandName GetCimVersionInfo -MockWith {
             return [PSCustomObject]@{
-                Version     = New-Object 'System.Version' (10, 0, 17035);
+                Version     = New-Object 'System.Version' (10, 0, 17134);
                 ProductType = 3;
-                Caption     = 'Windows Server 1803 (Preview)' 
+                Caption     = 'Windows Server 1803' 
             }
         }
         $target = GetWindowsVersion
         $target.Distribution | Should -Be 'WindowsServerSAC'
         $target.Version.Major, $target.Version.Minor, $target.Version.Build | Should -Be (1803, 1, 0)
-        $target.Name | Should -Be 'Windows Server 1803 (Preview)' 
+        $target.Name | Should -Be 'Windows Server 1803' 
     }
     It "In the case of Windows Server 1709" {
         Mock -CommandName GetCimVersionInfo -MockWith {
