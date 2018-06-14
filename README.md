@@ -72,4 +72,5 @@ The list of `Distribution` and `Version` properties values.
 |Ubuntu 15|Ubuntu|15|4,10|0|PowerShell Core does not support this version.|
 |Ubuntu 16|Ubuntu|16|4,10|0 - 3|Assign LTS point release to build version.|
 |Ubuntu 17|Ubuntu|17|4,10|0||
+|Ubuntu 18|Ubuntu|18|4|0||
 |Others|Unknown|0|0|0||
