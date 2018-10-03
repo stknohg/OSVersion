@@ -15,7 +15,8 @@ function GetWindowsVersion () {
                 $osDistro = [OSVersion.Distributions]::Windows
                 $majorVer = 10
                 $minorVer = switch ($cimInfo.Version.Build) {
-                    {$_ -gt 17134} { 1809; break } # RS5 next Release 
+                    {$_ -gt 17763} { 1903; break } # next Release
+                    17763 { 1809; break }          # October 2018 Update
                     17134 { 1803; break }          # Spring Creators Update
                     16299 { 1709; break }          # Fall Creators Update
                     15063 { 1703; break }          # Creators Update
@@ -26,12 +27,24 @@ function GetWindowsVersion () {
                 $buildVer = 0
                 break
             }
-            # Windows Server 2016 / Windows Server SAC
+            # Windows Server LTSC / Windows Server SAC
             switch ($cimInfo.Version.Build) {
-                {$_ -ge 17623} {
-                    # Windows Server 2019 (preview)
-                    $osDistro = [OSVersion.Distributions]::WindowsServer
-                    $majorVer, $minorVer, $buildVer = 2019, 1, 0
+                {$_ -gt 17763} {
+                    # Windows Server 1903
+                    $osDistro = [OSVersion.Distributions]::WindowsServerSAC
+                    $majorVer, $minorVer, $buildVer = 1903, 1, 0
+                }
+                17763 {
+                    # Windows Server 2019 / Windows Server 1809
+                    if ($cimInfo.Caption.Contains('2019')) {
+                        # Windows Server 2019
+                        $osDistro = [OSVersion.Distributions]::WindowsServer
+                        $majorVer, $minorVer, $buildVer = 2019, 1, 0
+                    } else {
+                        # Windows Server 1809
+                        $osDistro = [OSVersion.Distributions]::WindowsServerSAC
+                        $majorVer, $minorVer, $buildVer = 1809, 1, 0
+                    }
                     break
                 }
                 17134 {

@@ -6,10 +6,10 @@ Add-Type -Path (Join-Path $RootPath "OSVersionInfo.cs")
 Describe "GetWindowsVersion function unit tests" {
 
     # Windows 10
-    It "In the case of Windows 10 RS5(1809)" {
+    It "In the case of Windows 10 October 2018 Update" {
         Mock -CommandName GetCimVersionInfo -MockWith {
             return [PSCustomObject]@{
-                Version     = New-Object 'System.Version' (10, 0, 17500);
+                Version     = New-Object 'System.Version' (10, 0, 17763);
                 ProductType = 1;
                 Caption     = 'Windows 10 1809 Test Edition' 
             }
@@ -98,19 +98,45 @@ Describe "GetWindowsVersion function unit tests" {
         $target.Name | Should -Be 'Windows 10 1507 Test Edition' 
     }
 
-    # Windows Server 2016 / Windows Server SAC
-    It "In the case of Windows Server 2019 (Preview)" {
+    # Windows Server LTSC / Windows Server SAC
+    It "In the case of Windows Server 1903" {
         Mock -CommandName GetCimVersionInfo -MockWith {
             return [PSCustomObject]@{
-                Version     = New-Object 'System.Version' (10, 0, 17623);
+                Version     = New-Object 'System.Version' (10, 0, 17764);
                 ProductType = 3;
-                Caption     = 'Windows Server 2019 (Preview)' 
+                Caption     = 'Windows Server Test Editon' 
+            }
+        }
+        $target = GetWindowsVersion
+        $target.Distribution | Should -Be 'WindowsServerSAC'
+        $target.Version.Major, $target.Version.Minor, $target.Version.Build | Should -Be (1903, 1, 0)
+        $target.Name | Should -Be 'Windows Server Test Editon' 
+    }
+    It "In the case of Windows Server 2019" {
+        Mock -CommandName GetCimVersionInfo -MockWith {
+            return [PSCustomObject]@{
+                Version     = New-Object 'System.Version' (10, 0, 17763);
+                ProductType = 3;
+                Caption     = 'Windows Server 2019 Test Editon' 
             }
         }
         $target = GetWindowsVersion
         $target.Distribution | Should -Be 'WindowsServer'
         $target.Version.Major, $target.Version.Minor, $target.Version.Build | Should -Be (2019, 1, 0)
-        $target.Name | Should -Be 'Windows Server 2019 (Preview)' 
+        $target.Name | Should -Be 'Windows Server 2019 Test Editon' 
+    }
+    It "In the case of Windows Server 1809" {
+        Mock -CommandName GetCimVersionInfo -MockWith {
+            return [PSCustomObject]@{
+                Version     = New-Object 'System.Version' (10, 0, 17763);
+                ProductType = 3;
+                Caption     = 'Windows Server Test Edition' 
+            }
+        }
+        $target = GetWindowsVersion
+        $target.Distribution | Should -Be 'WindowsServerSAC'
+        $target.Version.Major, $target.Version.Minor, $target.Version.Build | Should -Be (1809, 1, 0)
+        $target.Name | Should -Be 'Windows Server Test Edition' 
     }
     It "In the case of Windows Server 1803" {
         Mock -CommandName GetCimVersionInfo -MockWith {

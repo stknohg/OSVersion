@@ -48,6 +48,7 @@ The list of `Distribution` and `Version` properties values.
 |Windows 10 Creators Update (1703)|Windows|10|1703|0||
 |Windows 10 Fall Creators Update (1709)|Windows|10|1709|0||
 |Windows 10 Spring Creators Update (1803)|Windows|10|1803|0||
+|Windows 10 October 2018 Update (1809)|Windows|10|1809|0||
 |Windows Server 2008|WindowsServer|2008|1|0 - 2|Assign SP to build version|
 |Windows Server 2008 R2|WindowsServer|2008|2|0 - 1|Assign SP to build version|
 |Windows Server 2012|WindowsServer|2012|1|0 - 1|Assign SP to build version|
@@ -56,6 +57,7 @@ The list of `Distribution` and `Version` properties values.
 |Windows Server 2019|WindowsServer|2019|1|0||
 |Windows Server 1709|WindowsServerSAC|1709|1|0||
 |Windows Server 1803|WindowsServerSAC|1803|1|0||
+|Windows Server 1809|WindowsServerSAC|1809|1|0||
 |OS X El Capitan (10.11)|MacOS|10|11|0 - 6|PowerShell Core does not support this version.|
 |macOS Sierra (10.12)|MacOS|10|12|0 - 6||
 |macOS High Sierra (10.13)|MacOS|10|13|0 - ||
