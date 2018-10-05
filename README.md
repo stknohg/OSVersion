@@ -61,6 +61,7 @@ The list of `Distribution` and `Version` properties values.
 |OS X El Capitan (10.11)|MacOS|10|11|0 - 6|PowerShell Core does not support this version.|
 |macOS Sierra (10.12)|MacOS|10|12|0 - 6||
 |macOS High Sierra (10.13)|MacOS|10|13|0 - ||
+|macOS Mojave (10.14)|MacOS|10|14|0 - ||
 |CentOS 7|CentOS|7|0 - |1406 - ||
 |Debian 8|Debian|8|0 - 8|0||
 |Debian 9|Debian|9|0 - |0||
