@@ -58,22 +58,18 @@ The list of `Distribution` and `Version` properties values.
 |Windows Server 1709|WindowsServerSAC|1709|1|0||
 |Windows Server 1803|WindowsServerSAC|1803|1|0||
 |Windows Server 1809|WindowsServerSAC|1809|1|0||
-|OS X El Capitan (10.11)|MacOS|10|11|0 - 6|PowerShell Core does not support this version.|
 |macOS Sierra (10.12)|MacOS|10|12|0 - 6||
 |macOS High Sierra (10.13)|MacOS|10|13|0 - ||
 |macOS Mojave (10.14)|MacOS|10|14|0 - ||
 |CentOS 7|CentOS|7|0 - |1406 - ||
 |Debian 8|Debian|8|0 - 8|0||
 |Debian 9|Debian|9|0 - |0||
-|Fedora 25|Fedora|25|0|0||
-|Fedora 26|Fedora|26|0|0||
+|Fedora 27 - |Fedora|27 -|0|0||
 |Kali Linux 2018.1|Kali|2018|1|0||
 |openSUSE Leap 42|OpenSUSE|14|42|1 - 3||
 |Red Hat Enterprise Linux 7|RHEL|7|1 - |0||
 |SUSE Linux Enterprise Server 12|SLES|12|0 - 3|0||
 |Ubuntu 14|Ubuntu|14|4,10|0 - 5|Assign LTS point release to build version.|
-|Ubuntu 15|Ubuntu|15|4,10|0|PowerShell Core does not support this version.|
 |Ubuntu 16|Ubuntu|16|4,10|0 - 3|Assign LTS point release to build version.|
-|Ubuntu 17|Ubuntu|17|4,10|0||
 |Ubuntu 18|Ubuntu|18|4|0||
 |Others|Unknown|0|0|0||
