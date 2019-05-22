@@ -6,6 +6,19 @@ Add-Type -Path (Join-Path $RootPath "OSVersionInfo.cs")
 Describe "GetWindowsVersion function unit tests" {
 
     # Windows 10
+    It "In the case of Windows 10 May 2019 Update" {
+        Mock -CommandName GetCimVersionInfo -MockWith {
+            return [PSCustomObject]@{
+                Version     = New-Object 'System.Version' (10, 0, 18362);
+                ProductType = 1;
+                Caption     = 'Windows 10 1903 Test Edition' 
+            }
+        }
+        $target = GetWindowsVersion
+        $target.Distribution | Should -Be 'Windows'
+        $target.Version.Major, $target.Version.Minor, $target.Version.Build | Should -Be (10, 1903, 0)
+        $target.Name | Should -Be 'Windows 10 1903 Test Edition' 
+    }
     It "In the case of Windows 10 October 2018 Update" {
         Mock -CommandName GetCimVersionInfo -MockWith {
             return [PSCustomObject]@{
@@ -99,10 +112,23 @@ Describe "GetWindowsVersion function unit tests" {
     }
 
     # Windows Server LTSC / Windows Server SAC
+    It "In the case of Windows Server 1909(next version)" {
+        Mock -CommandName GetCimVersionInfo -MockWith {
+            return [PSCustomObject]@{
+                Version     = New-Object 'System.Version' (10, 0, 18363);
+                ProductType = 3;
+                Caption     = 'Windows Server Test Editon' 
+            }
+        }
+        $target = GetWindowsVersion
+        $target.Distribution | Should -Be 'WindowsServerSAC'
+        $target.Version.Major, $target.Version.Minor, $target.Version.Build | Should -Be (1909, 1, 0)
+        $target.Name | Should -Be 'Windows Server Test Editon' 
+    }
     It "In the case of Windows Server 1903" {
         Mock -CommandName GetCimVersionInfo -MockWith {
             return [PSCustomObject]@{
-                Version     = New-Object 'System.Version' (10, 0, 17764);
+                Version     = New-Object 'System.Version' (10, 0, 18362);
                 ProductType = 3;
                 Caption     = 'Windows Server Test Editon' 
             }

@@ -38,9 +38,9 @@ The list of `Distribution` and `Version` properties values.
 
 |OS, distribution name|Distribution<br>property value|Version<br>(Major)|Version<br>(Minor)|Version<br>(Build)|Remarks|
 |----|----|----|----|----|----|
-|Windows Vista|Windows|6|0|0 - 2|Assign SP to build version|
+|[EOL] Windows Vista|Windows|6|0|0 - 2|Assign SP to build version|
 |Windows 7|Windows|7|0|0 - 1|Assign SP to build version|
-|Windows 8|Windows|8|0|0||
+|[EOL] Windows 8|Windows|8|0|0||
 |Windows 8.1|Windows|8|1|0||
 |Windows 10 Initial release (1507)|Windows|10|1507|0||
 |Windows 10 November update (1511)|Windows|10|1511|0||
@@ -49,6 +49,7 @@ The list of `Distribution` and `Version` properties values.
 |Windows 10 Fall Creators Update (1709)|Windows|10|1709|0||
 |Windows 10 Spring Creators Update (1803)|Windows|10|1803|0||
 |Windows 10 October 2018 Update (1809)|Windows|10|1809|0||
+|Windows 10 May 2019 Update (1903)|Windows|10|1903|0||
 |Windows Server 2008|WindowsServer|2008|1|0 - 2|Assign SP to build version|
 |Windows Server 2008 R2|WindowsServer|2008|2|0 - 1|Assign SP to build version|
 |Windows Server 2012|WindowsServer|2012|1|0 - 1|Assign SP to build version|
@@ -58,18 +59,19 @@ The list of `Distribution` and `Version` properties values.
 |Windows Server 1709|WindowsServerSAC|1709|1|0||
 |Windows Server 1803|WindowsServerSAC|1803|1|0||
 |Windows Server 1809|WindowsServerSAC|1809|1|0||
+|Windows Server 1903|WindowsServerSAC|1903|1|0||
 |macOS Sierra (10.12)|MacOS|10|12|0 - 6||
 |macOS High Sierra (10.13)|MacOS|10|13|0 - ||
 |macOS Mojave (10.14)|MacOS|10|14|0 - ||
 |CentOS 7|CentOS|7|0 - |1406 - ||
-|Debian 8|Debian|8|0 - 8|0||
+|[EOL] Debian 8|Debian|8|0 - 8|0||
 |Debian 9|Debian|9|0 - |0||
 |Fedora 27 - |Fedora|27 -|0|0||
 |Kali Linux 2018.1|Kali|2018|1|0||
 |openSUSE Leap 42|OpenSUSE|14|42|1 - 3||
 |Red Hat Enterprise Linux 7|RHEL|7|1 - |0||
 |SUSE Linux Enterprise Server 12|SLES|12|0 - 3|0||
-|Ubuntu 14|Ubuntu|14|4,10|0 - 5|Assign LTS point release to build version.|
+|[EOL] Ubuntu 14|Ubuntu|14|4,10|0 - 5|Assign LTS point release to build version.|
 |Ubuntu 16|Ubuntu|16|4,10|0 - 3|Assign LTS point release to build version.|
 |Ubuntu 18|Ubuntu|18|4|0||
 |Others|Unknown|0|0|0||
