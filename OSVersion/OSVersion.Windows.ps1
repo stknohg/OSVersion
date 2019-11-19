@@ -15,7 +15,8 @@ function GetWindowsVersion () {
                 $osDistro = [OSVersion.Distributions]::Windows
                 $majorVer = 10
                 $minorVer = switch ($cimInfo.Version.Build) {
-                    {$_ -gt 18362} { 1909; break } # next Release
+                    {$_ -gt 18363} { 2003; break } # next Release
+                    18363 { 1909; break }          # November 2019 Update
                     18362 { 1903; break }          # May 2019 Update
                     17763 { 1809; break }          # October 2018 Update
                     17134 { 1803; break }          # Spring Creators Update
@@ -30,7 +31,13 @@ function GetWindowsVersion () {
             }
             # Windows Server LTSC / Windows Server SAC
             switch ($cimInfo.Version.Build) {
-                {$_ -gt 18362} {
+                {$_ -gt 18363} {
+                    # Windows Server 2003
+                    $osDistro = [OSVersion.Distributions]::WindowsServerSAC
+                    $majorVer, $minorVer, $buildVer = 2003, 1, 0
+                    break
+                }
+                18363 {
                     # Windows Server 1909
                     $osDistro = [OSVersion.Distributions]::WindowsServerSAC
                     $majorVer, $minorVer, $buildVer = 1909, 1, 0
