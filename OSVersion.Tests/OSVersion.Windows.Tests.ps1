@@ -1,7 +1,9 @@
-$RootPath = Join-Path (Split-Path $PSScriptRoot -Parent) 'OSVersion'
-# OSVersion.Windows.ps1 is internal. so we need to dot source .ps1 file directly.
-Add-Type -Path (Join-Path $RootPath "OSVersionInfo.cs")
-. (Join-Path $RootPath 'OSVersion.Windows.ps1')
+BeforeAll {
+    $RootPath = Join-Path (Split-Path $PSScriptRoot -Parent) 'OSVersion'
+    # OSVersion.Windows.ps1 is internal. so we need to dot source .ps1 file directly.
+    Add-Type -Path (Join-Path $RootPath "OSVersionInfo.cs")
+    . (Join-Path $RootPath 'OSVersion.Windows.ps1')
+}
 
 Describe "GetWindowsVersion function unit tests" {
 

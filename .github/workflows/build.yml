@@ -13,13 +13,18 @@ jobs:
     steps:
       # checkout
       - uses: actions/checkout@v2
-      # Runs Pester test scripts
+      # Runs Pester all *.tests.ps1 scripts
       - name: Run Pester test for Windows
-        run: ./OSVersion.Tests/OSVersion.Windows.Tests.ps1
-        shell: pwsh
-      - name: Run Pester test for Linux
-        run: ./OSVersion.Tests/OSVersion.Linux.Tests.ps1
-        shell: pwsh
-      - name: Run Pester test for macOS
-        run: ./OSVersion.Tests/OSVersion.MacOS.Tests.ps1
+        run: |
+          Write-Output "Run Pester $(Get-InstalledModule Pester | Select-Object -ExpandProperty Version) ..."
+          $config = [PesterConfiguration]@{
+              Run = @{
+                  Path = './OSVersion.Tests/'
+                  # TestExtension is default setting (.Tests.ps1)
+              }
+              Output = @{
+                  Verbosity = 'Detailed'
+              }
+          }
+          Invoke-Pester -Configuration $config
         shell: pwsh

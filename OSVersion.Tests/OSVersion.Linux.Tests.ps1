@@ -1,7 +1,9 @@
-$RootPath = Join-Path (Split-Path $PSScriptRoot -Parent) 'OSVersion'
-# OSVersion.Linux.ps1 is internal. so we need to dot source .ps1 file directly.
-Add-Type -Path (Join-Path $RootPath "OSVersionInfo.cs")
-. (Join-Path $RootPath 'OSVersion.Linux.ps1')
+BeforeAll {
+    $RootPath = Join-Path (Split-Path $PSScriptRoot -Parent) 'OSVersion'
+    # OSVersion.Linux.ps1 is internal. so we need to dot source .ps1 file directly.
+    Add-Type -Path (Join-Path $RootPath "OSVersionInfo.cs")
+    . (Join-Path $RootPath 'OSVersion.Linux.ps1')
+}
 
 Describe "GetLinuxVersion function unit tests" {
 
