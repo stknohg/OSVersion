@@ -6,6 +6,20 @@ Add-Type -Path (Join-Path $RootPath "OSVersionInfo.cs")
 Describe "GetMacVersion function unit tests" {
 
     # macOS Mojave
+    It "In the case of macOS Catalina (10.15)" {
+        Mock -CommandName GetDarwinVersion -MockWith {
+            return New-Object 'System.Version' (19, 0, 0);
+        }
+        Mock -CommandName GetOSCaption -MockWith {
+            return 'macOS Catalina'
+        }
+        $target = GetMacVersion
+        $target.Distribution | Should -Be 'MacOS'
+        $target.Version.Major, $target.Version.Minor, $target.Version.Build | Should -Be (10, 15, 0)
+        $target.Name | Should -Be 'macOS Catalina' 
+    }
+
+    # macOS Mojave
     It "In the case of macOS Mojave (10.14)" {
         Mock -CommandName GetDarwinVersion -MockWith {
             return New-Object 'System.Version' (18, 0, 0);

@@ -7,6 +7,12 @@ function GetMacVersion () {
     $osDistro = [OSVersion.Distributions]::MacOS
     $majorVer, $minorVer, $buildVer = 0, 0, 0
     switch ($darwinVersion.Major) {
+        19 {
+            # macOS Catalina (10.15)
+            $majorVer, $minorVer = 10, 15
+            $buildVer = $darwinVersion.Minor
+            break
+        }
         18 {
             # macOS Mojave (10.14)
             $majorVer, $minorVer = 10, 14
@@ -44,8 +50,12 @@ function GetMacVersion () {
             }
             break
         }
-        Default {
+        {$_ -le 14} {
             $majorVer, $minorVer, $buildVer = 10, ($darwinVersion.Major - 4), $darwinVersion.Minor
+            break
+        }
+        Default {
+            $majorVer, $minorVer, $buildVer = 0, 0, 0
             break
         }
     }
