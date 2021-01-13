@@ -15,11 +15,11 @@ jobs:
       - uses: actions/checkout@v2
       # Runs Pester test scripts
       - name: Run Pester test for Windows
-        run: Invoke-Pester ./OSVersion.Tests/OSVersion.Windows.Tests.ps1 -Passthru
+        run: ./OSVersion.Tests/OSVersion.Windows.Tests.ps1
         shell: pwsh
       - name: Run Pester test for Linux
-        run: Invoke-Pester ./OSVersion.Tests/OSVersion.Linux.Tests.ps1 -Passthru
+        run: ./OSVersion.Tests/OSVersion.Linux.Tests.ps1
         shell: pwsh
       - name: Run Pester test for macOS
-        run: Invoke-Pester ./OSVersion.Tests/OSVersion.MacOS.Tests.ps1 -Passthru
+        run: ./OSVersion.Tests/OSVersion.MacOS.Tests.ps1
         shell: pwsh
