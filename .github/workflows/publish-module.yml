@@ -12,10 +12,11 @@ jobs:
     - name: validate module
       shell: pwsh
       run: |
+        # validate module
         $result = Test-ModuleManifest -Path ./OSVersion/OSVersion.psd1
         if (-not $?) {
             Write-Error 'Module manifest validation was failed.'
-            exit
+            exit 1
         }
         $result | Format-List
     # publish
@@ -24,5 +25,10 @@ jobs:
         NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
       shell: pwsh
       run: |
-        $pwd
-        Write-Output "Test Publish!"
+        # publish module
+        if (-not $env:NUGET_API_KEY) {
+            Write-Error 'NUGET_API_KEY environment variable not found.'
+            exit 1
+        }
+        Publish-Module -Path ./OSVersion -NuGetApiKey $env:NUGET_API_KEY -Verbose
+
