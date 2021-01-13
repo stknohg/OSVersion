@@ -6,6 +6,32 @@ Add-Type -Path (Join-Path $RootPath "OSVersionInfo.cs")
 Describe "GetWindowsVersion function unit tests" {
 
     # Windows 10
+    It "In the case of Windows 10 October 2020 Update (20H2)" {
+        Mock -CommandName GetCimVersionInfo -MockWith {
+            return [PSCustomObject]@{
+                Version     = New-Object 'System.Version' (10, 0, 19042);
+                ProductType = 1;
+                Caption     = 'Windows 10 20H2 Test Edition' 
+            }
+        }
+        $target = GetWindowsVersion
+        $target.Distribution | Should -Be 'Windows'
+        $target.Version.Major, $target.Version.Minor, $target.Version.Build | Should -Be (10, 2010, 0)
+        $target.Name | Should -Be 'Windows 10 20H2 Test Edition' 
+    }
+    It "In the case of Windows 10 May 2020 Update" {
+        Mock -CommandName GetCimVersionInfo -MockWith {
+            return [PSCustomObject]@{
+                Version     = New-Object 'System.Version' (10, 0, 19041);
+                ProductType = 1;
+                Caption     = 'Windows 10 2004 Test Edition' 
+            }
+        }
+        $target = GetWindowsVersion
+        $target.Distribution | Should -Be 'Windows'
+        $target.Version.Major, $target.Version.Minor, $target.Version.Build | Should -Be (10, 2004, 0)
+        $target.Name | Should -Be 'Windows 10 2004 Test Edition' 
+    }
     It "In the case of Windows 10 November 2019 Update" {
         Mock -CommandName GetCimVersionInfo -MockWith {
             return [PSCustomObject]@{
@@ -125,17 +151,30 @@ Describe "GetWindowsVersion function unit tests" {
     }
 
     # Windows Server LTSC / Windows Server SAC
-    It "In the case of Windows Server 2003(next version)" {
+    It "In the case of Windows Server 20H2" {
         Mock -CommandName GetCimVersionInfo -MockWith {
             return [PSCustomObject]@{
-                Version     = New-Object 'System.Version' (10, 0, 18364);
+                Version     = New-Object 'System.Version' (10, 0, 19042);
                 ProductType = 3;
                 Caption     = 'Windows Server Test Editon' 
             }
         }
         $target = GetWindowsVersion
         $target.Distribution | Should -Be 'WindowsServerSAC'
-        $target.Version.Major, $target.Version.Minor, $target.Version.Build | Should -Be (2003, 1, 0)
+        $target.Version.Major, $target.Version.Minor, $target.Version.Build | Should -Be (2010, 1, 0)
+        $target.Name | Should -Be 'Windows Server Test Editon' 
+    }
+    It "In the case of Windows Server 2004" {
+        Mock -CommandName GetCimVersionInfo -MockWith {
+            return [PSCustomObject]@{
+                Version     = New-Object 'System.Version' (10, 0, 19041);
+                ProductType = 3;
+                Caption     = 'Windows Server Test Editon' 
+            }
+        }
+        $target = GetWindowsVersion
+        $target.Distribution | Should -Be 'WindowsServerSAC'
+        $target.Version.Major, $target.Version.Minor, $target.Version.Build | Should -Be (2004, 1, 0)
         $target.Name | Should -Be 'Windows Server Test Editon' 
     }
     It "In the case of Windows Server 1909" {

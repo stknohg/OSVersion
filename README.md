@@ -1,7 +1,5 @@
 # OSVersion
 
-[![Build status](https://ci.appveyor.com/api/projects/status/ap98gg1ir7hb7pbx?svg=true)](https://ci.appveyor.com/project/stknohg/osversion)
-
 PowerShell module for getting OS version information.
 
 ## How to install
@@ -51,6 +49,8 @@ The list of `Distribution` and `Version` properties values.
 |Windows 10 October 2018 Update (1809)|Windows|10|1809|0||
 |Windows 10 May 2019 Update (1903)|Windows|10|1903|0||
 |Windows 10 November 2019 Update (1909)|Windows|10|1909|0||
+|Windows 10 May 2020 Update (2004)|Windows|10|2004|0||
+|Windows 10 October 2020 Update (20H2)|Windows|10|2010|0||
 |Windows Server 2008|WindowsServer|2008|1|0 - 2|Assign SP to build version|
 |Windows Server 2008 R2|WindowsServer|2008|2|0 - 1|Assign SP to build version|
 |Windows Server 2012|WindowsServer|2012|1|0 - 1|Assign SP to build version|
@@ -62,6 +62,8 @@ The list of `Distribution` and `Version` properties values.
 |Windows Server 1809|WindowsServerSAC|1809|1|0||
 |Windows Server 1903|WindowsServerSAC|1903|1|0||
 |Windows Server 1909|WindowsServerSAC|1909|1|0||
+|Windows Server 2004|WindowsServerSAC|2004|1|0||
+|Windows Server 20H2|WindowsServerSAC|2010|1|0||
 |macOS Sierra (10.12)|MacOS|10|12|0 - 6||
 |macOS High Sierra (10.13)|MacOS|10|13|0 - ||
 |macOS Mojave (10.14)|MacOS|10|14|0 - ||
