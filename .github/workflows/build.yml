@@ -1,0 +1,25 @@
+# This is a basic workflow to help you get started with Actions
+name: CI
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+jobs:
+  # Pester test job
+  pester-test:
+    runs-on: ubuntu-18.04
+    steps:
+      # checkout
+      - uses: actions/checkout@v2
+      # Runs Pester test scripts
+      - name: Run Pester test for Windows
+        run: Invoke-Pester ./OSVersion.Tests/OSVersion.Windows.Tests.ps1 -Passthru
+        shell: pwsh
+      - name: Run Pester test for Linux
+        run: Invoke-Pester ./OSVersion.Tests/OSVersion.Linux.Tests.ps1 -Passthru
+        shell: pwsh
+      - name: Run Pester test for macOS
+        run: Invoke-Pester ./OSVersion.Tests/OSVersion.MacOS.Tests.ps1 -Passthru
+        shell: pwsh
