@@ -1,5 +1,7 @@
 # OSVersion
 
+![build](https://github.com/stknohg/OSVersion/workflows/build/badge.svg)
+
 PowerShell module for getting OS version information.
 
 ## How to install
