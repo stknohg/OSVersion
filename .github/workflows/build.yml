@@ -14,8 +14,9 @@ jobs:
       # checkout
       - uses: actions/checkout@v2
       # Runs Pester all *.tests.ps1 scripts
-      - name: Run Pester test for Windows
+      - name: Run Pester tests
         run: |
+          Import-Module Pester
           Write-Output "Run Pester $(Get-InstalledModule Pester | Select-Object -ExpandProperty Version) ..."
           $config = [PesterConfiguration]@{
               Run = @{
