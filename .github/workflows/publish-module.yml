@@ -1,0 +1,27 @@
+# Publish module workflow
+name: publish-module
+on:
+  workflow_dispatch:
+jobs:
+  publish-to-gallery:
+    runs-on: ubuntu-18.04
+    steps:
+    # checkout
+    - uses: actions/checkout@v2
+    # validate
+    - name: validate module
+      run: |
+        $result = Test-ModuleManifest -Path ./OSVersion/OSVersion.psd1
+        if (-not $?) {
+            Write-Error 'Module manifest validation was failed.'
+            exit
+        }
+        $result | Format-List
+    # publish
+    - name: publish module
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+      shell: pwsh
+      run: |
+        $pwd
+        Write-Output "Test Publish!"
