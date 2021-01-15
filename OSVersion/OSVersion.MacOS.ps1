@@ -18,7 +18,7 @@ function GetMacVersion () {
 
 function GetProductVersion () {
     try {
-        return (sw_vers -buildVersion).Split('.')
+        return (sw_vers -productVersion).Split('.')
     } catch {
         return (0, 0, 0)
     }
